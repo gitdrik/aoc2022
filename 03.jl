@@ -5,11 +5,12 @@ open("03.txt") do f
         c = pop!(r[1:length(r)÷2] ∩ r[(1+length(r)÷2):end])
         p1 += islowercase(c) ? 1+c-'a' : 27+c-'A'
     end
-    println(p1)
+    println("Part 1: ", p1)
+
     p2 = 0
     for i ∈ 1:3:length(R)
         c = pop!(R[i] ∩ R[i+1] ∩ R[i+2])
         p2 += islowercase(c) ? 1+c-'a' : 27+c-'A'
     end
-    println(p2)
+    println("Part 2: ", p2)
 end
