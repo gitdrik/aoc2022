@@ -17,14 +17,13 @@ open("07.txt") do f
             end
         end
     end
-    println(sum([s for (_,s) ∈ dirsize if s ≤ 100000]))
+    println("Part 1: ", sum([s for (_,s) ∈ dirsize if s ≤ 100000]))
 
     S = dirsize[["/"]]
     for s ∈ sort([s for (_,s) ∈ dirsize])
         if 70000000-S+s ≥ 30000000
-            println(s)
+            println("Part 2: ", s)
             break
         end
     end 
-
 end
