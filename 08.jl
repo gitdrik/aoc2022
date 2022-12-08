@@ -1,7 +1,7 @@
 open("08.txt") do f
     F = fill(-1, 101, 101)
     for (i, l) ∈ enumerate(eachline(f))
-        F[i+1, 2:100] = [parse.(Int, c) for c ∈ l]
+        F[i+1, 2:100] = parse.(Int, collect(l))
     end
 
     function isvisible(h, r, c, dr, dc)
@@ -10,7 +10,7 @@ open("08.txt") do f
         return isvisible(h, r+dr, c+dc, dr, dc)
     end
     p1 = 0
-    for r∈2:100, c∈2:100
+    for r ∈ 2:100, c ∈ 2:100
         for (dr, dc) ∈ [(0,1),(1,0),(0,-1),(-1,0)]
             if isvisible(F[r,c], r, c, dr, dc)
                 p1 +=1
@@ -26,7 +26,7 @@ open("08.txt") do f
         return 1 + trees(h, r+dr, c+dc, dr, dc)
     end
     p2 = 0
-    for r∈2:100, c∈2:100
+    for r ∈ 2:100, c ∈ 2:100
         score = prod([trees(F[r,c],r,c,dr,dc) for (dr,dc)∈[(0,1),(1,0),(0,-1),(-1,0)]])
         p2 = max(score, p2)
     end
