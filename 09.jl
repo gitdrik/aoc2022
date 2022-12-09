@@ -1,6 +1,6 @@
 open("09.txt") do f
     rope = fill((0,0), 10)
-    tails1, tails2 = Set([(0,0)]), Set([(0,0)])
+    p1, p2 = Set([(0,0)]), Set([(0,0)])
     dirs = Dict('U'=>(-1,0), 'R'=>(0,1), 'D'=>(1,0), 'L'=>(0,-1))
     for (dir, n) ∈ [(dirs[l[1]], parse(Int, l[3:end])) for l ∈ eachline(f)]
         for _ ∈ 1:n 
@@ -11,10 +11,10 @@ open("09.txt") do f
                     rope[i] = rope[i] .+ sign.(delta)
                 end
             end
-            push!(tails1, rope[2])
-            push!(tails2, rope[10])
+            push!(p1, rope[2])
+            push!(p2, rope[10])
         end
     end
-    println("Part 1: ", length(tails1))
-    println("Part 2: ", length(tails2))
+    println("Part 1: ", length(p1))
+    println("Part 2: ", length(p2))
 end
