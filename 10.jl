@@ -1,4 +1,3 @@
-function run()
 open("10.txt") do f
     p1, i, X = 0, 0, 1
     println("Part 2: ")
@@ -16,5 +15,4 @@ open("10.txt") do f
         end
     end
     println("Part 1: ", p1)
-end
 end
