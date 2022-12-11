@@ -1,5 +1,5 @@
 function monkeys()
-    Items =
+    items =
     [
         [66, 59, 64, 51],
         [67, 61],
@@ -10,7 +10,7 @@ function monkeys()
         [82, 98, 77, 94, 86, 81],
         [54, 95, 70, 93, 88, 93, 63, 50]
     ]
-    Op =
+    op =
     [
         n -> n * 3,
         n -> n * 19,
@@ -21,7 +21,7 @@ function monkeys()
         n -> n + 7,
         n -> n + 4
     ]
-    Next =
+    next =
     [
         n -> n%2==0 ? 2 : 5,
         n -> n%7==0 ? 4 : 6,
@@ -33,21 +33,21 @@ function monkeys()
         n -> n%13==0 ? 3 : 1
     ]
 
-    function throw(Items, rounds, p1)
+    function throw(items, rounds, p1)
         ans = zeros(Int, 8)
-        for r ∈ 1:rounds, m ∈ 1:8
-            while !isempty(Items[m])
+        for _ ∈ 1:rounds, m ∈ 1:8
+            while !isempty(items[m])
                 ans[m] += 1
-                n = popfirst!(Items[m])
-                n = p1 ? Op[m](n) ÷ 3 : Op[m](n) % 9699690
-                push!(Items[Next[m](n)], n)
+                n = popfirst!(items[m])
+                n = p1 ? op[m](n) ÷ 3 : op[m](n) % 9699690
+                push!(items[next[m](n)], n)
             end
         end
         sort!(ans)
         return ans[8]*ans[7]
     end
-    println("Part 1: ", throw(deepcopy(Items), 20, true))
-    println("Part 2: ", throw(deepcopy(Items), 10000, false))
+    println("Part 1: ", throw(deepcopy(items), 20, true))
+    println("Part 2: ", throw(deepcopy(items), 10000, false))
 end
 
 monkeys()
