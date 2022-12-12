@@ -29,15 +29,13 @@ open("12.txt") do f
     println("Part 1: ", p1(start, goal))
 
     function p2(goal)
-        ans = typemax(Int)
         Q = [(0, goal...)]
         seen = Set{Tuple{Int,Int}}()
         while !isempty(Q)
             steps, r, c = pop!(Q)
-            steps ≥ ans && continue
             (r,c) ∈ seen && continue
             push!(seen, (r, c))
-            M[r,c] == 'a' && (ans = min(ans, steps))
+            M[r,c] == 'a' && return steps
             for (dr,dc) ∈ [(-1,0), (0,1), (1,0), (0,-1)]
                 nr, nc = r+dr, c+dc
                 (nr ∉ 1:41 || nc ∉ 1:113) && continue
@@ -45,7 +43,6 @@ open("12.txt") do f
                 pushfirst!(Q, (steps+1,nr,nc))
             end
         end
-        return ans
     end
     println("Part 2: ", p2(goal))
 end
