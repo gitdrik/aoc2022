@@ -10,3 +10,4 @@ using BenchmarkTools; @btime
 09: 0.84 ms
 10: 0.53 ms
 11:   86 ms
+12:  1.2 ms
