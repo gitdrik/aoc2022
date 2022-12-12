@@ -21,7 +21,7 @@ open("12.txt") do f
             for (dr, dc) ∈ [(-1,0), (0,1), (1,0), (0,-1)]
                 nr, nc = r+dr, c+dc
                 (nr ∉ 1:41 || nc ∉ 1:113) && continue
-                M[nr,nc] - M[r,c] < -1 && continue
+                M[r,c] - M[nr,nc] > 1 && continue
                 push!(Q, (steps+1, nr, nc))
             end
         end
