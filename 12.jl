@@ -10,7 +10,7 @@ open("12.txt") do f
     @assert M[goal...]=='E'
     M[goal...] = 'z'
 
-    function solve(start, goal, slopes)
+    function solve(start, goal)
         Q = [(0, start...)]
         seen = Set{Tuple{Int,Int}}()
         for (steps, r, c) ∈ Q
@@ -21,11 +21,11 @@ open("12.txt") do f
             for (dr, dc) ∈ [(-1,0), (0,1), (1,0), (0,-1)]
                 nr, nc = r+dr, c+dc
                 (nr ∉ 1:41 || nc ∉ 1:113) && continue
-                M[nr,nc] - M[r,c] ∉ slopes && continue
+                M[nr,nc] - M[r,c] < -1 && continue
                 push!(Q, (steps+1, nr, nc))
             end
         end
     end
-    println("Part 1: ", solve(start, goal, typemin(Int):1))
-    println("Part 2: ", solve(goal, 'a', -1:typemax(Int)))
+    println("Part 1: ", solve(goal, start))
+    println("Part 2: ", solve(goal, 'a'))
 end
