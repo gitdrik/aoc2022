@@ -1,12 +1,6 @@
+function run()
 open("13.txt") do f
-    P1, P2 = [], []
-    while !eof(f)
-        L = eval(Meta.parse(readline(f)))
-        R = eval(Meta.parse(readline(f)))
-        push!(P1, [L, R])
-        push!(P2, L, R)
-        readline(f)
-    end
+    P = [eval(Meta.parse(l)) for l ∈ readlines(f) if l != ""]
 
     function compare(L, R)
         L==R && return nothing
@@ -21,9 +15,11 @@ open("13.txt") do f
         return compare(L, R)
     end
 
-    println("Part 1: ", sum(findall([compare(L,R) for (L,R) ∈ P1])))
+    P1 = [compare(P[i], P[i+1]) for i ∈ 1:2:length(P)-1]
+    println("Part 1: ", sum(findall(P1)))
 
-    push!(P2, [[2]], [[6]])
-    sort!(P2, lt = compare)
-    println("Part 2: ", findfirst(==([[2]]), P2) * findfirst(==([[6]]), P2))
+    push!(P, [[2]], [[6]])
+    sort!(P, lt = compare)
+    println("Part 2: ", findfirst(==([[2]]), P) * findfirst(==([[6]]), P))
+end
 end
