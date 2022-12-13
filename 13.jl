@@ -6,12 +6,11 @@ open("13.txt") do f
         L == [] && return true
         R == [] && return false
         typeof(L)==typeof(R)==Int && return L < R
-        L, R = deepcopy(L), deepcopy(R)
         typeof(L)==Int && (L = [L])
         typeof(R)==Int && (R = [R])
-        ans = compare(popfirst!(L), popfirst!(R))
+        ans = compare(L[1], R[1])
         ans != nothing && return ans
-        return compare(L, R)
+        return compare(L[2:end], R[2:end])
     end
 
     P1 = [compare(P[i], P[i+1]) for i ∈ 1:2:length(P)-1]
