@@ -3,10 +3,7 @@ open("13.txt") do f
         L==R && return nothing
         L == [] && return true
         R == [] && return false
-        if typeof(L)==typeof(R)==Int
-            L < R && return true            
-            L > R && return false
-        end
+        typeof(L)==typeof(R)==Int && return L < R
         L, R = deepcopy(L), deepcopy(R)
         typeof(L)==Int && (L = [L])
         typeof(R)==Int && (R = [R])
