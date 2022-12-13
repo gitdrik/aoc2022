@@ -1,4 +1,3 @@
-function run()
 open("13.txt") do f
     P = [eval(Meta.parse(l)) for l ∈ readlines(f) if l != ""]
 
@@ -21,5 +20,4 @@ open("13.txt") do f
     push!(P, [[2]], [[6]])
     sort!(P, lt = compare)
     println("Part 2: ", findfirst(==([[2]]), P) * findfirst(==([[6]]), P))
-end
 end
