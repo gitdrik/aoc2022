@@ -3,8 +3,8 @@ open("13.txt") do f
 
     function compare(L, R)
         L==R && return nothing
-        L == [] && return true
-        R == [] && return false
+        L==[] && return true
+        R==[] && return false
         typeof(L)==typeof(R)==Int && return L < R
         typeof(L)==Int && (L = [L])
         typeof(R)==Int && (R = [R])
