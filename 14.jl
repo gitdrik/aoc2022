@@ -1,9 +1,7 @@
 open("14.txt") do f
-    D = eachline(f) .|> l->split(l," -> ") .|> s->parse.(Int, split(s,','))
+    L = eachline(f) .|> l->split(l," -> ") .|> s->parse.(Int, split(s,','))
     R = Set{Tuple{Int,Int}}()
-    for l ∈ D, i ∈ 1:length(l)-1
-        c1, r1 = l[i]
-        c2, r2 = l[i+1]
+    for l ∈ L, ((c1, r1), (c2, r2)) ∈ zip(l, l[2:end])
         for r ∈ min(r1,r2):max(r1,r2), c ∈ min(c1,c2):max(c1,c2)
             push!(R, (r, c))
         end
@@ -12,15 +10,11 @@ open("14.txt") do f
     function sand!(R, p2)
         maxr = maximum(r for (r,_) ∈ R)
         units = 0
-        done = false
-        while !done
+        while true
             c = 500
             for r ∈ 0:maxr+p2
                 if r == maxr+p2
-                    if !p2
-                        done = true
-                        break
-                    end
+                    !p2 && return units
                     push!(R, (r, c))
                     units += 1
                 elseif (r+1, c) ∉ R
@@ -34,12 +28,11 @@ open("14.txt") do f
                 else
                     push!(R, (r, c))
                     units += 1
-                    done = r==0
+                    r==0 && return units
                     break
                 end
             end
         end
-        return units
     end
     println("Part 1: ", sand!(deepcopy(R), false))
     println("Part 2: ", sand!(R, true))
