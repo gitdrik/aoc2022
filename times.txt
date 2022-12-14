@@ -12,3 +12,4 @@ using BenchmarkTools; @btime
 11:   86 ms
 12: 0.97 ms
 13: 0.13 s
+14:   42 ms
