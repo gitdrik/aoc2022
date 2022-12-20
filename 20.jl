@@ -3,7 +3,7 @@ open("20.txt") do f
 
     function grovesum(N, mix)
         l = length(N)
-        iN = collect(zip(1:l, copy(N)))
+        iN = collect(enumerate(N))
         for _ ∈ 1:mix
             for i ∈ 1:l
                 j = findfirst(map(a->a[1]==i, iN))
