@@ -13,7 +13,7 @@ open("21.txt") do f
     println("Part 1: ", Int(yell("root")))
 
     a, _, b = split(M["root"])
-    # yell(b) = yell(a, h) = k*h + m
+    # yell(b) == yell(a, h) == k*h + m
     m = yell(a, 0)
     k = (yell(a, 1) - m)
     h = (yell(b) - m) // k
