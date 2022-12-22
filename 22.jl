@@ -1,3 +1,4 @@
+function run()
 open("22.txt") do f
     M = fill(' ', 200, 150)
     for r ∈ 1:200
@@ -95,7 +96,7 @@ open("22.txt") do f
                 popfirst!(path)
             else
                 n = ""
-                while !isempty(path) && path[1]∈'0':'9'
+                while !isempty(path) && isdigit(path[1])
                     n *= popfirst!(path)
                 end
                 n = parse(Int, n)
@@ -113,4 +114,5 @@ open("22.txt") do f
     end
     println("Part 1: ", password(path, true))
     println("Part 2: ", password(path, false))
+end
 end
