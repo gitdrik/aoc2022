@@ -1,4 +1,3 @@
-function run()
 open("22.txt") do f
     M = fill(' ', 200, 150)
     for r ∈ 1:200
@@ -114,5 +113,4 @@ open("22.txt") do f
     end
     println("Part 1: ", password(path, true))
     println("Part 2: ", password(path, false))
-end
 end
