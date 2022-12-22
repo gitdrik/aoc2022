@@ -1,5 +1,5 @@
 open("21.txt") do f
-    M = Dict([s[1]=>s[2] for s ∈ split.(eachline(f), ": ")])
+    M = Dict(s[1]=>s[2] for s ∈ split.(eachline(f), ": "))
 
     function yell(s, h=Inf)
         h != Inf && s=="humn" && return h
