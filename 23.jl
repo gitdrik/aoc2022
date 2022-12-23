@@ -1,4 +1,3 @@
-function run()
 open("23.txt") do f
     E = Set{Tuple{Int,Int}}()
     for (r, l) ∈ enumerate(eachline(f)), (c, e) ∈ enumerate(l)
@@ -15,7 +14,7 @@ open("23.txt") do f
     for t = Iterators.countfrom(1)
         movement = false
         P, B = Set{Tuple{Int,Int}}(), Set{Tuple{Int,Int}}()
-        for e∈E
+        for e ∈ E
             !any(p ∈ E for p ∈ [n.+e for n∈N]) && continue
             for d ∈ D
                 if !any(p ∈ E for p ∈ [e.+n for n∈d])
@@ -29,12 +28,12 @@ open("23.txt") do f
             end
         end
         nE = Set{Tuple{Int,Int}}()
-        for e∈E
+        for e ∈ E
             if !any(p ∈ E for p ∈ [n.+e for n∈N])
                 push!(nE, e)
             else
                 done = false
-                for d∈D
+                for d ∈ D
                     if !any(p ∈ E for p ∈ [n.+e for n∈d])
                         done = true
                         if e.+d[2] ∈ B
@@ -61,5 +60,4 @@ open("23.txt") do f
             break
         end
     end
-end
 end
